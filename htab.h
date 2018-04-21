@@ -12,11 +12,11 @@ typedef struct htab_item{
     struct htab_item *next;
 }htab_item;
 
-typedef struct tab{
+typedef struct tab {
    unsigned int size; //total number of items in table
    unsigned int arr_size; //number of pointers in table
    struct htab_item *ptr[];
-} htab;
+}htab;
 
 /**
  * Initializes hash table

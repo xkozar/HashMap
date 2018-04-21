@@ -3,27 +3,27 @@
 //
 #include <stdio.h>
 #include "htab.h"
+#include "io.h"
+
+#define HTAB_ARR_SIZE 1000000000
+
+void print_word(char *key, unsigned int *val){
+   printf("%s %u\n", key, *val);
+}
 
 int main(){
-   htab *table = htab_init(3);
-   htab_lookup_add(table, "nanana");
-   htab_lookup_add(table, "nanana");
-   htab_lookup_add(table, "nan1ana");
-   htab_lookup_add(table, "nan2ana");
-   htab_lookup_add(table, "nan3ana");
-   htab_lookup_add(table, "na5nana");
-   htab_lookup_add(table, "na4nana");
-   htab_lookup_add(table, "nan6ana");
-   htab_lookup_add(table, "nana7na");
+   FILE *file = fopen("C:\\Users\\kozar\\CLionProjects\\HashMap\\Test", "r");
 
-   htab *table2 = htab_move(1, table);
-   htab_remove(table2, "na4nana");
-   htab_clear(table2);
+   htab *table = htab_init(HTAB_ARR_SIZE);
 
+   char word[127];
+
+   while(get_word(word, 127, file) != EOF){
+      htab_lookup_add(table, word);
+   }
+   htab_lookup_add(table, word);
+
+   htab_foreach(table, print_word);
    htab_free(table);
-   htab_free(table2);
-
-   printf("%d", sizeof(long));
-
    return 0;
 }
