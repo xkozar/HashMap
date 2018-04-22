@@ -23,6 +23,7 @@ bool htab_remove(htab *t, char *key){
       t -> size--;
       return true;
    }
+
    for(struct htab_item *i = t -> ptr[index]; i -> next != NULL; i = i -> next){
       if(i -> next == item){
          i -> next = item -> next;

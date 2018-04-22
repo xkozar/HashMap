@@ -7,9 +7,11 @@
  */
 #include "io.h"
 #include <string.h>
+#include <stdbool.h>
 
 int get_word(char *s, int max, FILE *f){
-   if(f == NULL) return 0;
+   static bool first_longer = true;
+   if(f == NULL) return EOF;
 
    char input_word[max];
 
@@ -26,16 +28,22 @@ int get_word(char *s, int max, FILE *f){
          }
       }
       else{
-         if(count < max-1){
+         if(count < max){
             input_word[count] = c;
             count ++;
+         }
+         else if(first_longer == true){
+            perror("Key is too long, shortening it to fit max size.");
+            first_longer = false;
          }
       }
       c = getc(f);
    }
 
-   input_word[count] = '\0';
-   strcpy(s, input_word);
+   if(count != 0){
+      input_word[count] = '\0';
+      strcpy(s, input_word);
+   }
    return c;
 
 

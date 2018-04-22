@@ -19,7 +19,7 @@ htab *htab_init(unsigned int size){
    hash_table -> arr_size = size;
    hash_table -> size = 0;
 
-   for(int i = 0; i < size; i++)
+   for(unsigned int i = 0; i < size; i++)
       hash_table -> ptr[i] = NULL;
 
    return hash_table;

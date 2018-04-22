@@ -6,6 +6,8 @@
 #include <malloc.h>
 #include <string.h>
 
+#define MAX_KEY_SIZE 127
+
 typedef struct htab_item{
     char *key;
     unsigned int data; //count

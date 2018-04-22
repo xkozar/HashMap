@@ -28,6 +28,7 @@ struct htab_item *htab_lookup_add(htab *t, char *key){
    current = (struct htab_item *) malloc(sizeof(struct htab_item));
    if(current == NULL) return NULL;
 
+   current -> key = NULL;
    current -> key = (char *) malloc(sizeof(char) * (strlen(key)+1));
    if(current -> key == NULL){
       free(current);
